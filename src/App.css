@@ -1,8 +1,5 @@
 :root{
   background-color: rgb(255, 244, 231);
-}
-
-div#root {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,8 +19,11 @@ p {
 
 h1{
   font-size: 3rem;
+  justify-self: start;
+  width: 500px;
 }
 h2 {
+  justify-self: start;
   font-family: Impact;
   font-size: 2.5em;
   text-transform: uppercase;
@@ -32,7 +32,6 @@ h2 {
   letter-spacing: 2px;
   padding: 1rem 1rem;
   margin: 0;
-  justify-self: start;
 }
 
 img {
@@ -40,9 +39,7 @@ img {
   height: auto;
   object-fit: cover;
   z-index: 0;
-  border-radius: 5px;
   box-shadow:  1px 1px 1px 1px rgba(0,0,0,0.1);
-
 }
 
 input {
@@ -80,7 +77,7 @@ button {
 
 .textTop {
   position: absolute;
-  top: 0em;
+  top: 3em;
   left: 0em;
 }
 
@@ -94,17 +91,16 @@ button {
 .playground {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: start;
   flex-grow: 1;
-  margin: 6.5rem 2rem 0 2rem;
+  margin: 5.2rem 2rem 0;
   max-width: 500px;
 }
 
 .userInput {
   display: flex;
   flex-direction: column;
-  /* margin: 0.55rem 0; */
   width: 20rem;
 }
 
