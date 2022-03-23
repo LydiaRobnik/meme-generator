@@ -1,3 +1,7 @@
+:root{
+  background-color: rgb(255, 244, 231);
+}
+
 div#root {
   display: flex;
   flex-direction: column;
@@ -6,14 +10,19 @@ div#root {
 
 .App {
   font-family: sans-serif;
-  color: black;
+  color: rgb(255, 136, 0);
   max-width: 1000px;
 }
 
 p {
   margin-bottom: 0.25rem;
+  font-size: 1.2rem;
+  font-weight: bold;
 }
 
+h1{
+  font-size: 3rem;
+}
 h2 {
   font-family: Impact;
   font-size: 2.5em;
@@ -23,40 +32,50 @@ h2 {
   letter-spacing: 2px;
   padding: 1rem 1rem;
   margin: 0;
+  justify-self: start;
 }
 
 img {
-  max-width: 500px;
+  max-width: 100%;
   height: auto;
   object-fit: cover;
   z-index: 0;
-  border: 1px solid grey;
+  border-radius: 5px;
+  box-shadow:  1px 1px 1px 1px rgba(0,0,0,0.1);
+
 }
 
 input {
   margin: 0.25rem 0;
   padding: 0.5rem;
+  border-radius: 5px;
+  font-size: 1em;
+  border: none;
+  box-shadow:  1px 1px 1px 1px rgba(0,0,0,0.1);
 }
 
 button {
   border: none;
-  box-shadow: 2px 2px 5px #46474a;
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.7rem;
   margin: 0.5rem 0;
   cursor: pointer;
   width: 200px;
+  font-size: 1rem;;
 }
 
 .memegenerator {
   display: flex;
   justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
 }
 
 .memeWrapper {
   position: relative;
   height: 50%;
   z-index: 0;
+  max-width: 500px;
 }
 
 .textTop {
@@ -75,16 +94,18 @@ button {
 .playground {
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: space-around;
   align-items: start;
   flex-grow: 1;
-  margin: 0 2rem;
+  margin: 6.5rem 2rem 0 2rem;
+  max-width: 500px;
 }
 
 .userInput {
   display: flex;
   flex-direction: column;
-  margin: 1rem 0;
+  /* margin: 0.55rem 0; */
+  width: 20rem;
 }
 
 .actionButtons {
@@ -93,21 +114,6 @@ button {
   align-items: space-around;
 }
 
-.upload{
-  font-weight: bold;
-  color: #0fa728;
-}
-
-#input{
-  padding-bottom: 1rem;
-}
-
-#file-upload-button{
-  border: none;
-  box-shadow: 2px 2px 5px #46474a;
-  border-radius: 5px;
-  padding: 0.5rem;
-  margin: 0.5rem 0;
-  cursor: pointer;
-  width: 200px;
+label{
+  margin-bottom: 2rem;
 }

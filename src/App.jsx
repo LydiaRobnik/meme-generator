@@ -47,9 +47,9 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Create your own memes</h1>
       <div className="memegenerator">
         <div className="memeWrapper" ref={finalMeme}>
+          <h1>MAKE : MEME</h1>
           {mounted && (
             <>
               <img
@@ -63,7 +63,6 @@ export default function App() {
         </div>
         <div className="playground">
           <div className="userInput actionButtons">
-            <p>1. Choose or upload a picture</p>
             <button
               style={{ backgroundColor: "#5edb89" }}
               onClick={() => {
@@ -71,14 +70,16 @@ export default function App() {
                 setRandomPicture(data[number].url);
               }}
             >
-              Random picture
+              START
             </button>
-            <p className="upload">Upload your own pictures</p>
-            <FileUploader handleChange={handleChange} name="file" types={fileTypes}/>
-            <button onClick={createDownloadFile} style={{ backgroundColor: "#bbdcfa" }}>Download</button>
+            <p className="upload">Upload your own picture</p>
+            <FileUploader className="draganddrop" handleChange={handleChange} name="file" types={fileTypes}/>
+            <div className="userInput actionButtons">
+              <button onClick={createDownloadFile} style={{ backgroundColor: "#bbdcfa" }}>DOWNLOAD</button>
+            </div>
           </div>
           <div className="userInput">
-            <p>2. Enter your text here:</p>
+            <p>Enter your text here</p>
             <input
               onChange={(e) => setTopText(e.target.value)}
               type="text"
@@ -94,9 +95,9 @@ export default function App() {
             <button
               onClick={() => {
                 setMemeText({ top: topText, bottom: bottomText });
-              }}
+              }} style={{ backgroundColor: "#b3ada8" }}
             >
-              Add your text
+              ADD
             </button>
           </div>
           <div className="userInput actionButtons">
@@ -108,9 +109,9 @@ export default function App() {
                 setRandomPicture();
                 setUserFiles({selectedFile: null})
               }}
-              style={{ backgroundColor: "#FF865E" }}
+              style={{ backgroundColor: "#ff8800" }}
             >
-              Reset everything
+              RESET
             </button>
           </div>
         </div>
