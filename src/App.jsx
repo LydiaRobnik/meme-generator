@@ -43,9 +43,9 @@ export default function App() {
 
   return (
     <div className="App">
+      <h1>MAKE : MEME</h1>
       <div className="memegenerator">
         <div className="memeWrapper" ref={finalMeme}>
-        <h1>MAKE : MEME</h1>
           {mounted && (
             <>
               <img
@@ -56,6 +56,7 @@ export default function App() {
           )}
           <h2 className="textTop">{memeText.top}</h2>
           <h2 className="textBottom">{memeText.bottom}</h2>
+
         </div>
         <div className="playground">
           <div className="userInput actionButtons">
