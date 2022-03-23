@@ -71,7 +71,7 @@ button {
 .memeWrapper {
   position: relative;
   height: 50%;
-  width: 40%;
+  width: 50%;
   z-index: 0;
   max-width: 500px;
 }
@@ -86,7 +86,7 @@ button {
   position: absolute;
   bottom: 0em;
   right: 1em;
-  text-align: right;
+  text-align: center;
 }
 
 .playground {
