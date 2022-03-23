@@ -1,16 +1,15 @@
 import "./App.css";
 import React, { useEffect, useState, useRef } from "react";
 import domtoimage from 'dom-to-image';
+import { FileUploader } from "react-drag-drop-files";
 
 export default function App() {
   const [data, setData] = useState();
   const [randomPicture, setRandomPicture] = useState();
-  const [topText, setTopText] = useState("");
-  const [bottomText, setBottomText] = useState("");
   const [memeText, setMemeText] = useState({ top: "", bottom: "" });
   const [mounted, setMounted] = useState(false);
-  const [userFiles, setUserFiles] = useState({selectedFile: null});
   const finalMeme = useRef(null);
+  const fileTypes = ["JPG", "PNG", "GIF"];
 
   useEffect(() => {
     let isLoading = true;
@@ -27,10 +26,10 @@ export default function App() {
     return () => (isLoading = false);
   }, []);
 
-  const useUserUploadAsMemePic = () => {
-    const objectURL = URL.createObjectURL(userFiles.selectedFile);
-    setRandomPicture(objectURL)
-  }
+  const handleChange = (file) => {
+    const objectURL = URL.createObjectURL(file);
+    setRandomPicture(objectURL);
+  };
 
   const createDownloadFile = () => {
     const myImage = finalMeme.current;
@@ -44,9 +43,9 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>Create your own memes</h1>
       <div className="memegenerator">
         <div className="memeWrapper" ref={finalMeme}>
+        <h1>MAKE : MEME</h1>
           {mounted && (
             <>
               <img
@@ -60,7 +59,6 @@ export default function App() {
         </div>
         <div className="playground">
           <div className="userInput actionButtons">
-            <p>Choose or upload a picture</p>
             <button
               style={{ backgroundColor: "#5edb89" }}
               onClick={() => {
@@ -68,47 +66,39 @@ export default function App() {
                 setRandomPicture(data[number].url);
               }}
             >
-              Random picture
+              START
             </button>
-            <p className="upload">Upload your own pictures</p>
-            <input onChange={(e) => setUserFiles({selectedFile: e.target.files[0]})} type="file" id="input" accept="image/*"/>
-            <button onClick={useUserUploadAsMemePic} style={{ backgroundColor: "#bbdcgf" }}>Upload</button>
-            <button onClick={createDownloadFile} style={{ backgroundColor: "#bbdcfa" }}>Download</button>
+            <p className="upload">Upload your own picture</p>
+            <FileUploader className="draganddrop" handleChange={handleChange} name="file" types={fileTypes}/>
+            <div className="userInput actionButtons">
+              <button onClick={createDownloadFile} style={{ backgroundColor: "#bbdcfa" }}>DOWNLOAD</button>
+            </div>
           </div>
           <div className="userInput">
-            <p>Enter your text here:</p>
+            <p>Enter your text here</p>
             <input
-              onChange={(e) => setTopText(e.target.value)}
+              onChange={(e) => setMemeText({...memeText, top: e.target.value})}
               type="text"
               placeholder="top text"
-              value={topText}
+              value={memeText.top}
             />
             <input
-              onChange={(e) => setBottomText(e.target.value)}
+              onChange={(e) => setMemeText({...memeText, bottom: e.target.value})}
               type="text"
               placeholder="bottom text"
-              value={bottomText}
+              value={memeText.bottom}
             />
-            <button
-              onClick={() => {
-                setMemeText({ top: topText, bottom: bottomText });
-              }}
-            >
-              Add your text
-            </button>
           </div>
           <div className="userInput actionButtons">
             <button
               onClick={() => {
-                setTopText("");
-                setBottomText("");
+
                 setMemeText({ top: "", bottom: "" });
-                setRandomPicture();
-                setUserFiles({selectedFile: null})
+                setRandomPicture(); 
               }}
-              style={{ backgroundColor: "#FF865E" }}
+              style={{ backgroundColor: "#ff8800" }}
             >
-              Reset everything
+              RESET
             </button>
           </div>
         </div>
