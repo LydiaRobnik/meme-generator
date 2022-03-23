@@ -1,5 +1,6 @@
 import "./App.css";
 import React, { useEffect, useState, useRef } from "react";
+import domtoimage from 'dom-to-image';
 
 export default function App() {
   const [data, setData] = useState();
@@ -9,7 +10,7 @@ export default function App() {
   const [memeText, setMemeText] = useState({ top: "", bottom: "" });
   const [mounted, setMounted] = useState(false);
   const [userFiles, setUserFiles] = useState({selectedFile: null});
-  const finalMeme = useRef(null);
+  let finalMeme = useRef(null);
 
   useEffect(() => {
     let isLoading = true;
@@ -29,6 +30,11 @@ export default function App() {
   const useUserUploadAsMemePic = () => {
     const objectURL = URL.createObjectURL(userFiles.selectedFile);
     setRandomPicture(objectURL)
+  }
+
+  const createDownloadFile = () => {
+    const img = new Image();
+        img.src = finalMeme;
   }
 
   return (
@@ -60,7 +66,7 @@ export default function App() {
               Random picture
             </button>
             <p className="upload">Upload your own pictures</p>
-            <input onChange={(e) => setUserFiles({selectedFile: e.target.files[0]})} type="file" id="input" accept="image/*" multiple/>
+            <input onChange={(e) => setUserFiles({selectedFile: e.target.files[0]})} type="file" id="input" accept="image/*"/>
             <button onClick={useUserUploadAsMemePic} style={{ backgroundColor: "#bbdcgf" }}>Upload</button>
             <button style={{ backgroundColor: "#bbdcfa" }}>Download</button>
           </div>
