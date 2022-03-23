@@ -60,7 +60,7 @@ export default function App() {
         </div>
         <div className="playground">
           <div className="userInput actionButtons">
-            <p>1. Choose or upload a picture</p>
+            <p>Choose or upload a picture</p>
             <button
               style={{ backgroundColor: "#5edb89" }}
               onClick={() => {
@@ -76,7 +76,7 @@ export default function App() {
             <button onClick={createDownloadFile} style={{ backgroundColor: "#bbdcfa" }}>Download</button>
           </div>
           <div className="userInput">
-            <p>2. Enter your text here:</p>
+            <p>Enter your text here:</p>
             <input
               onChange={(e) => setTopText(e.target.value)}
               type="text"
