@@ -10,7 +10,7 @@ export default function App() {
   const [memeText, setMemeText] = useState({ top: "", bottom: "" });
   const [mounted, setMounted] = useState(false);
   const [userFiles, setUserFiles] = useState({selectedFile: null});
-  let finalMeme = useRef(null);
+  const finalMeme = useRef(null);
 
   useEffect(() => {
     let isLoading = true;
@@ -33,15 +33,20 @@ export default function App() {
   }
 
   const createDownloadFile = () => {
-    const img = new Image();
-        img.src = finalMeme;
+    const myImage = finalMeme.current;
+    domtoimage.toJpeg(myImage, {quality: 0.95}).then(imageUrl => {
+      const link = document.createElement('a');
+      link.download = 'meme.jpg';
+      link.href = imageUrl;
+      link.click()
+    })
   }
 
   return (
     <div className="App">
       <h1>Create your own memes</h1>
       <div className="memegenerator">
-        <div className="memeWrapper">
+        <div className="memeWrapper" ref={finalMeme}>
           {mounted && (
             <>
               <img
@@ -68,7 +73,7 @@ export default function App() {
             <p className="upload">Upload your own pictures</p>
             <input onChange={(e) => setUserFiles({selectedFile: e.target.files[0]})} type="file" id="input" accept="image/*"/>
             <button onClick={useUserUploadAsMemePic} style={{ backgroundColor: "#bbdcgf" }}>Upload</button>
-            <button style={{ backgroundColor: "#bbdcfa" }}>Download</button>
+            <button onClick={createDownloadFile} style={{ backgroundColor: "#bbdcfa" }}>Download</button>
           </div>
           <div className="userInput">
             <p>2. Enter your text here:</p>
@@ -99,6 +104,7 @@ export default function App() {
                 setBottomText("");
                 setMemeText({ top: "", bottom: "" });
                 setRandomPicture();
+                setUserFiles({selectedFile: null})
               }}
               style={{ backgroundColor: "#FF865E" }}
             >
