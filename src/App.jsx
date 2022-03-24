@@ -43,8 +43,33 @@ export default function App() {
 
   return (
     <div className="App">
-      <h1>MAKE : MEME</h1>
       <div className="memegenerator">
+        <h1>MAKE : MEME</h1>     
+        <button
+            style={{ backgroundColor: "#5edb89" }}
+            onClick={() => {
+              let number = Math.floor(Math.random() * 100);
+              setRandomPicture(data[number].url);
+            }}
+          >
+          RANDOM PICTURE
+        </button>
+        <p>OR</p>
+        <FileUploader className="draganddrop" handleChange={handleChange} name="file" types={fileTypes}/>
+        <div className="userInput">
+          <input
+            onChange={(e) => setMemeText({...memeText, top: e.target.value})}
+            type="text"
+            placeholder="top text"
+            value={memeText.top}
+          />
+          <input
+            onChange={(e) => setMemeText({...memeText, bottom: e.target.value})}
+            type="text"
+            placeholder="bottom text"
+            value={memeText.bottom}
+          />
+        </div>
         <div className="memeWrapper" ref={finalMeme}>
           {mounted && (
             <>
@@ -56,54 +81,13 @@ export default function App() {
           )}
           <h2 className="textTop">{memeText.top}</h2>
           <h2 className="textBottom">{memeText.bottom}</h2>
-
         </div>
-        <div className="playground">
-          <div className="userInput actionButtons">
-            <button
-              style={{ backgroundColor: "#5edb89" }}
-              onClick={() => {
-                let number = Math.floor(Math.random() * 100);
-                setRandomPicture(data[number].url);
-              }}
-            >
-              START
-            </button>
-            <p className="upload">Upload your own picture</p>
-            <FileUploader className="draganddrop" handleChange={handleChange} name="file" types={fileTypes}/>
-            <div className="userInput actionButtons">
-              <button onClick={createDownloadFile} style={{ backgroundColor: "#bbdcfa" }}>DOWNLOAD</button>
-            </div>
-          </div>
-          <div className="userInput">
-            <p>Enter your text here</p>
-            <input
-              onChange={(e) => setMemeText({...memeText, top: e.target.value})}
-              type="text"
-              placeholder="top text"
-              value={memeText.top}
-            />
-            <input
-              onChange={(e) => setMemeText({...memeText, bottom: e.target.value})}
-              type="text"
-              placeholder="bottom text"
-              value={memeText.bottom}
-            />
-          </div>
-          <div className="userInput actionButtons">
-            <button
-              onClick={() => {
-
-                setMemeText({ top: "", bottom: "" });
-                setRandomPicture(); 
-              }}
-              style={{ backgroundColor: "#ff8800" }}
-            >
-              RESET
-            </button>
-          </div>
-        </div>
+        <button onClick={createDownloadFile} style={{ backgroundColor: "#bbdcfa" }}>DOWNLOAD</button>
+        <button onClick={() =>  {setMemeText({ top: "", bottom: "" }); setRandomPicture()}} style={{ backgroundColor: "#ff8800" }}
+        >
+          RESET
+        </button>
       </div>
     </div>
   );
-}
+};
